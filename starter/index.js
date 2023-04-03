@@ -98,11 +98,22 @@ console.log('Total Months: ' + totalMonths);
 
 //The net total amount of Profit/Losses over the entire period.
 var totalProfitLoses = 0;
+
+var averageChanges = 0;
 for (var i = 0; i < finances.length; i++) {
   for (j = 1; j < finances[i].length; j++) {
     totalProfitLoses = totalProfitLoses + finances[i][j];
+    if (i > 0) {
+      var change = finances[i][j] - finances[i - 1][j];
+      averageChanges = averageChanges + change;
+    }
   }
 }
 console.log('Total: ' + '$' + totalProfitLoses);
+
+//The average of the **changes** in Profit/Losses over the entire period.
+var average = averageChanges / (totalMonths - 1);
+console.log('Average Change: ' + average.toFixed(2));
+
 
 
